@@ -1,0 +1,16 @@
+@font-face{ 
+	font-family: 'NType82';
+	src: url('./NType82-Regular.ttf') format('truetype'),
+}
+
+body {
+    letter-spacing: 2.5px;
+    text-decoration: none;
+    color:black;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+}
