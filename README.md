@@ -1,3 +1,3 @@
 # about me website
 about me
-credit to james scholz for the inspo
+credit to james scholz, for the inspo
