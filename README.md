@@ -1,2 +1,2 @@
-# about me website
+# personal website
 about me, credit to james scholz for the inspo
