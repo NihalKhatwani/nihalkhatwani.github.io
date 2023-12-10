@@ -1,2 +1,0 @@
-# personal website
-about me, credit to james scholz
