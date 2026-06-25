@@ -1,29 +1,99 @@
 /*
-  Minimal — a lightweight personal site theme
-  Inspired by https://orderedlist.com/minimal/
-  No external fonts, no images, no JS. ~4 KB.
+  Minimal — jekyll-theme-minimal (orderedlist), self-contained.
+  Matches https://emulrenin.github.io/ — same Noto Sans fonts and styling.
+  No build step, no JS, no external requests. Fonts self-hosted (~48 KB).
 */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ---------- Fonts (self-hosted Noto Sans, woff2 only) ---------- */
+@font-face {
+  font-family: 'Noto Sans';
+  font-weight: 400; font-style: normal; font-display: swap;
+  src: local('Noto Sans'), local('Noto-Sans-regular'),
+       url('fonts/Noto-Sans-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-weight: 700; font-style: normal; font-display: swap;
+  src: local('Noto Sans Bold'), local('Noto-Sans-700'),
+       url('fonts/Noto-Sans-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-weight: 400; font-style: italic; font-display: swap;
+  src: local('Noto Sans Italic'), local('Noto-Sans-italic'),
+       url('fonts/Noto-Sans-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-weight: 700; font-style: italic; font-display: swap;
+  src: local('Noto Sans Bold Italic'), local('Noto-Sans-700italic'),
+       url('fonts/Noto-Sans-700italic.woff2') format('woff2');
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
 
 body {
-  background: #fff;
-  color: #393939;
-  font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  padding: 50px;
+  margin: 0;
+  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #727272;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Layout ---------- */
-.wrapper {
-  width: 860px;
-  margin: 0 auto;
+h1, h2, h3, h4, h5, h6 { color: #222; margin: 0 0 20px; }
+h1, h2, h3 { line-height: 1.1; }
+h1 { font-size: 28px; }
+h2 { color: #393939; }
+h3, h4, h5, h6 { color: #494949; }
+
+p, ul, ol, table, pre, dl { margin: 0 0 20px; }
+
+a { color: #267CB9; text-decoration: none; }
+a:hover, a:focus { color: #069; font-weight: bold; }
+a small { font-size: 11px; color: #777; margin-top: -0.3em; display: block; }
+a:hover small { color: #777; }
+
+strong { color: #222; font-weight: 700; }
+small { font-size: 11px; }
+
+blockquote {
+  border-left: 1px solid #e5e5e5;
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-style: italic;
 }
+
+code, pre {
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal,
+               Consolas, "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
+  color: #333;
+}
+pre {
+  padding: 8px 15px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  overflow-x: auto;
+}
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 5px 10px; border-bottom: 1px solid #e5e5e5; }
+th { color: #444; }
+dt { color: #444; font-weight: 700; }
+
+img { max-width: 100%; }
+
+hr { border: 0; background: #e5e5e5; height: 1px; margin: 0 0 20px; }
+
+/* ---------- Layout: fixed sidebar + scrolling content ---------- */
+.wrapper { width: 860px; margin: 0 auto; }
 
 header {
   width: 270px;
   float: left;
-  position: fixed;
+  position: fixed;                 /* stays put while content scrolls */
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -41,40 +111,20 @@ footer {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.wrapper::after { content: ""; display: table; clear: both; }
-
-/* ---------- Sidebar ---------- */
-header h1 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.1;
-  color: #393939;
-  letter-spacing: -1px;
-  margin-top: 70px;
-}
-
-header p {
-  color: #606060;
-  font-size: 14px;
-}
-
+/* The static sidebar image / avatar */
 .avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-top: 60px;
   display: block;
+  width: 270px;            /* full sidebar width; use border-radius:50% for a circle */
+  height: auto;
+  margin: 0 0 20px;
+  border-radius: 6px;
 }
 
-p.view {
-  font-size: 12px;
-  margin-top: 10px;
-}
-
+p.view { font-size: 11px; }
 p.view a { color: #aaa; }
 p.view a:hover { color: #267CB9; }
 
-/* Download / link boxes — the signature Minimal buttons */
+/* ---------- Download / link boxes ---------- */
 ul.downloads {
   list-style: none;
   height: 40px;
@@ -83,149 +133,51 @@ ul.downloads {
   border-radius: 5px;
   border: 1px solid #e0e0e0;
   width: 270px;
-  margin-top: 35px;
-  overflow: hidden;
 }
-
-ul.downloads li {
+.downloads li {
   width: 89px;
   float: left;
   border-right: 1px solid #e0e0e0;
   height: 40px;
 }
-
-ul.downloads li:last-child { border-right: none; }
-
-ul.downloads a {
+.downloads li:first-child a { border-radius: 5px 0 0 5px; }
+.downloads li:last-child a { border-radius: 0 5px 5px 0; }
+.downloads li + li + li { border-right: none; width: 89px; }
+.downloads a {
+  line-height: 1;
+  font-size: 11px;
+  color: #676767;
   display: block;
   text-align: center;
   padding-top: 6px;
-  height: 40px;
-  color: #676767;
-  text-decoration: none;
+  height: 34px;
 }
+.downloads a:hover, .downloads a:focus { color: #675C5C; font-weight: bold; }
+.downloads a strong { font-size: 14px; display: block; color: #222; }
 
-ul.downloads a:hover,
-ul.downloads a:focus { background-color: #f0f0f0; }
-
-ul.downloads strong {
-  display: block;
-  font-size: 13px;
-  color: #222;
-  line-height: 14px;
-}
-
-/* ---------- Typography (main content) ---------- */
-section h1,
-section h2,
-section h3,
-section h4,
-section h5,
-section h6 {
-  color: #393939;
-  margin: 0 0 20px;
-}
-
-section h1 { font-size: 30px; font-weight: 700; letter-spacing: -1px; }
-section h2 { font-size: 22px; font-weight: 700; margin-top: 32px; }
-section h3 { font-size: 18px; font-weight: 700; margin-top: 24px; }
-
-section p,
-section ul,
-section ol,
-section table,
-section pre,
-section blockquote { margin: 0 0 20px; }
-
-section ul, section ol { padding-left: 20px; }
-section li { margin-bottom: 6px; }
-
-a { color: #267CB9; text-decoration: none; }
-a:hover { color: #069; text-decoration: underline; }
-
-strong { font-weight: 700; }
-
-blockquote {
-  border-left: 3px solid #e5e5e5;
-  margin: 0 0 20px;
-  padding: 0 0 0 20px;
-  font-style: italic;
-  color: #606060;
-}
-
-code {
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 13px;
-  background: #f2f2f2;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  padding: 1px 4px;
-  color: #222;
-}
-
-pre {
-  background: #f8f8f8;
-  border: 1px solid #e5e5e5;
-  border-radius: 5px;
-  padding: 12px;
-  overflow: auto;
-  font-size: 13px;
-}
-pre code { background: none; border: none; padding: 0; }
-
-/* The signature gradient horizontal rule */
-hr {
-  border: 0;
-  height: 1px;
-  background: #e5e5e5;
-  background-image: linear-gradient(to right, #fff, #e5e5e5, #fff);
-  margin: 0 0 20px;
-}
-
-/* ---------- Footer ---------- */
-footer p { color: #aaa; font-size: 12px; }
-footer a { color: #aaa; }
-footer a:hover { color: #267CB9; }
-
-/* ---------- Responsive ---------- */
+/* ---------- Responsive (identical breakpoints to the theme) ---------- */
 @media print, screen and (max-width: 960px) {
-  .wrapper { width: auto; margin: 0; }
-
-  header, section, footer {
-    float: none;
-    position: static;
-    width: auto;
-  }
-
+  div.wrapper { width: auto; margin: 0; }
+  header, section, footer { float: none; position: static; width: auto; }
   header { padding-right: 320px; }
-
-  section {
-    border: 1px solid #e5e5e5;
-    border-width: 1px 0;
-    padding: 20px 0;
-    margin: 0 0 20px;
-  }
-
+  .avatar { width: 200px; }
+  section { border: 1px solid #e5e5e5; border-width: 1px 0; padding: 20px 0; margin: 0 0 20px; }
   header a small { display: inline; }
   header ul { position: absolute; right: 50px; top: 52px; }
 }
 
 @media print, screen and (max-width: 720px) {
   body { word-wrap: break-word; }
-
   header { padding: 0; }
-
-  header h1 { margin-top: 30px; }
-
-  header ul, p.view { position: static; }
-
-  section { margin: 0 0 30px; }
+  header ul, header p.view { position: static; }
+  pre, code { word-wrap: normal; }
 }
 
 @media print, screen and (max-width: 480px) {
-  .wrapper { padding: 0 15px; }
-  ul.downloads { width: 100%; }
-  ul.downloads li { width: 33.3%; }
+  body { padding: 15px; }
+  .downloads { width: 99%; }
+  .downloads li, .downloads li + li + li { width: 33%; }
+  .avatar { width: 160px; }
 }
 
 @media print {
