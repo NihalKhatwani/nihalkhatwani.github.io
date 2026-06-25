@@ -1,0 +1,234 @@
+/*
+  Minimal — a lightweight personal site theme
+  Inspired by https://orderedlist.com/minimal/
+  No external fonts, no images, no JS. ~4 KB.
+*/
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #fff;
+  color: #393939;
+  font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Layout ---------- */
+.wrapper {
+  width: 860px;
+  margin: 0 auto;
+}
+
+header {
+  width: 270px;
+  float: left;
+  position: fixed;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+section {
+  width: 500px;
+  float: right;
+  padding-bottom: 50px;
+}
+
+footer {
+  width: 270px;
+  float: left;
+  position: fixed;
+  bottom: 50px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.wrapper::after { content: ""; display: table; clear: both; }
+
+/* ---------- Sidebar ---------- */
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #393939;
+  letter-spacing: -1px;
+  margin-top: 70px;
+}
+
+header p {
+  color: #606060;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 60px;
+  display: block;
+}
+
+p.view {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+p.view a { color: #aaa; }
+p.view a:hover { color: #267CB9; }
+
+/* Download / link boxes — the signature Minimal buttons */
+ul.downloads {
+  list-style: none;
+  height: 40px;
+  padding: 0;
+  background: #f4f4f4;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  width: 270px;
+  margin-top: 35px;
+  overflow: hidden;
+}
+
+ul.downloads li {
+  width: 89px;
+  float: left;
+  border-right: 1px solid #e0e0e0;
+  height: 40px;
+}
+
+ul.downloads li:last-child { border-right: none; }
+
+ul.downloads a {
+  display: block;
+  text-align: center;
+  padding-top: 6px;
+  height: 40px;
+  color: #676767;
+  text-decoration: none;
+}
+
+ul.downloads a:hover,
+ul.downloads a:focus { background-color: #f0f0f0; }
+
+ul.downloads strong {
+  display: block;
+  font-size: 13px;
+  color: #222;
+  line-height: 14px;
+}
+
+/* ---------- Typography (main content) ---------- */
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+  color: #393939;
+  margin: 0 0 20px;
+}
+
+section h1 { font-size: 30px; font-weight: 700; letter-spacing: -1px; }
+section h2 { font-size: 22px; font-weight: 700; margin-top: 32px; }
+section h3 { font-size: 18px; font-weight: 700; margin-top: 24px; }
+
+section p,
+section ul,
+section ol,
+section table,
+section pre,
+section blockquote { margin: 0 0 20px; }
+
+section ul, section ol { padding-left: 20px; }
+section li { margin-bottom: 6px; }
+
+a { color: #267CB9; text-decoration: none; }
+a:hover { color: #069; text-decoration: underline; }
+
+strong { font-weight: 700; }
+
+blockquote {
+  border-left: 3px solid #e5e5e5;
+  margin: 0 0 20px;
+  padding: 0 0 0 20px;
+  font-style: italic;
+  color: #606060;
+}
+
+code {
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-size: 13px;
+  background: #f2f2f2;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 1px 4px;
+  color: #222;
+}
+
+pre {
+  background: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 12px;
+  overflow: auto;
+  font-size: 13px;
+}
+pre code { background: none; border: none; padding: 0; }
+
+/* The signature gradient horizontal rule */
+hr {
+  border: 0;
+  height: 1px;
+  background: #e5e5e5;
+  background-image: linear-gradient(to right, #fff, #e5e5e5, #fff);
+  margin: 0 0 20px;
+}
+
+/* ---------- Footer ---------- */
+footer p { color: #aaa; font-size: 12px; }
+footer a { color: #aaa; }
+footer a:hover { color: #267CB9; }
+
+/* ---------- Responsive ---------- */
+@media print, screen and (max-width: 960px) {
+  .wrapper { width: auto; margin: 0; }
+
+  header, section, footer {
+    float: none;
+    position: static;
+    width: auto;
+  }
+
+  header { padding-right: 320px; }
+
+  section {
+    border: 1px solid #e5e5e5;
+    border-width: 1px 0;
+    padding: 20px 0;
+    margin: 0 0 20px;
+  }
+
+  header a small { display: inline; }
+  header ul { position: absolute; right: 50px; top: 52px; }
+}
+
+@media print, screen and (max-width: 720px) {
+  body { word-wrap: break-word; }
+
+  header { padding: 0; }
+
+  header h1 { margin-top: 30px; }
+
+  header ul, p.view { position: static; }
+
+  section { margin: 0 0 30px; }
+}
+
+@media print, screen and (max-width: 480px) {
+  .wrapper { padding: 0 15px; }
+  ul.downloads { width: 100%; }
+  ul.downloads li { width: 33.3%; }
+}
+
+@media print {
+  body { padding: 0.4in; font-size: 12pt; color: #444; }
+  header, footer { position: static; }
+}
